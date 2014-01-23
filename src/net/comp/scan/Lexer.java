@@ -10,32 +10,30 @@ import net.comp.token.Token;
 import net.comp.token.TokenType;
 
 public class Lexer {
+    private final Pattern tokenPatterns;
+    
+    public Lexer() {
+        final StringBuilder tokenPatternsBuffer = new StringBuilder();
+        for (final TokenType tokenType : EnumSet.allOf(TokenType.class)) {
+            tokenPatternsBuffer.append(String.format("|(?<%s>%s)", tokenType.name(), tokenType.pattern));
+        }
+        
+        this.tokenPatterns = Pattern.compile(tokenPatternsBuffer.substring(1));
+    }
+    
     public List<Token> scan(final String input) {
         // The tokens to return
         final List<Token> tokens = new LinkedList<Token>();
         
         // Lexer logic begins here
-        final StringBuffer tokenPatternsBuffer = new StringBuffer();
-        for (final TokenType tokenType : TokenType.values()) {
-            tokenPatternsBuffer.append(String.format("|(?<%s>%s)", tokenType.name(), tokenType.pattern));
-        }
-        
-        final Pattern tokenPatterns = Pattern.compile(new String(tokenPatternsBuffer.substring(1)));
-        
-        final EnumSet<TokenType> nonWhitespace = EnumSet.allOf(TokenType.class);
-        nonWhitespace.remove(TokenType.WHITESPACE);
         
         // Begin matching tokens
-        final Matcher matcher = tokenPatterns.matcher(input);
+        final Matcher matcher = this.tokenPatterns.matcher(input);
         while (matcher.find()) {
-            if (matcher.group(TokenType.WHITESPACE.name()) != null) {
-                ;
-            } else {
-                for (final TokenType type : nonWhitespace) {
-                    if (matcher.group(type.name()) != null) {
-                        tokens.add(new Token(type, matcher.group(type.name())));
-                        break;
-                    }
+            for (final TokenType type : EnumSet.allOf(TokenType.class)) {
+                if (matcher.group(type.name()) != null) {
+                    tokens.add(new Token(type, matcher.group(type.name())));
+                    break;
                 }
             }
         }
