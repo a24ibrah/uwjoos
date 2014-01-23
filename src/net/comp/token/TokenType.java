@@ -10,29 +10,28 @@ public enum TokenType {
     COMMENT("(/\\*([^*]|[\\r\\n]|(\\*+([^*/]|[\\r\\n])))*\\*+/)|(//.*[\\n|\\r|\\r\\n])"),
     //    (/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)|(//.*[\n|\r|\r\n]?)
     
-    ABSTRACT("abstract"),
-    BYTE("byte"),BREAK("break"),BOOLEAN("boolean"),
-    CONTINUE("continue"),CONST("const"),CLASS("class"),CHAR("char"),CATCH("catch"),CASE("case"),
-    DOUBLE("double"),DEFAULT("default"),
-    EXTENDS("extends"),ELSE("else"),
-    FALSE("false"),FLOAT("float"),FINAL("final"),FINALLY("finally"),FOR("for|FOR"), 
-    GOTO("goto"),
-    IF("if"),IMPLEMENTS("implements"),INTERFACE("interface"),
-    LONG("long"),
-    NATIVE("native"),NULL("null"),NEW("new"),
-    PACKAGE("package"),PRIVATE("private"),PROTECTED("protected"),PUBLIC("public"),
-    RETURN("return"),
-    SHORT("short"),SYNCHRONIZED("synchronize"),SWITCH("switch"),SUPER("super"),STATIC("static"),STRICTFP("strictfp"),
-    THIS("this"),THROWS("throws"),TRUE("true"),TRANSIENT("transient"),TRY("try"),
-    VOID("void"),VOLATILE("volatile"),
-    WHILE("while"),
+    ABSTRACT("\\babstract\\b"),
+    BYTE("\\bbyte\\b"),BREAK("\\bbreak\\b"),BOOLEAN("\\bboolean\\b"),
+    CONTINUE("\\bcontinue\\b"),CONST("\\bconst\\b"),CLASS("\\bclass\\b"),CHAR("\\bchar\\b"),CATCH("\\bcatch\\b"),CASE("\\bcase\\b"),
+    DOUBLE("\\bdouble\\b"),DEFAULT("\\bdefault\\b"),
+    EXTENDS("\\bextends\\b"),ELSE("\\belse\\b"),
+    FALSE("\\bfalse\\b"),FLOAT("\\bfloat\\b"),FINAL("\\bfinal\\b"),FINALLY("\\bfinally\\b"),FOR("\\bfor\\b"), 
+    GOTO("\\bgoto\\b"),
+    IF("\\bif\\b"),IMPLEMENTS("\\bimplements\\b"),INTERFACE("\\binterface\\b"),INT("\\bint\\b"),
+    LONG("\\blong\\b"),
+    NATIVE("\\bative\\b"),NULL("\\bnull\\b"),NEW("\\bnew\\b"),
+    PACKAGE("\\bpackage\\b"),PRIVATE("private"),PROTECTED("protected"),PUBLIC("public"),
+    RETURN("\\breturn\\b"),
+    SHORT("\\bshort\\b"),SYNCHRONIZED("\\bsynchronize\\b"),SWITCH("\\bswitch\\b"),SUPER("\\bsuper\\b"),STATIC("\\bstatic\\b"),STRICTFP("\\bstrictfp\\b"),
+    THIS("\\bthis\\b"),THROW("\\bthrow\\b"),THROWS("\\bthrows\\b"),TRUE("\\btrue\\b"),TRANSIENT("\\btransient\\b"),TRY("\\btry\\b"),
+    VOID("\\bvoid\\b"),VOLATILE("\\bvolatile\\b"),
+    WHILE("\\bwhile\\b"),
     
-    NUMBER("-?[0-9]+"),
+    NUMBER("-?[0-9]+"), // Note: this is incorrect, it should be for integers and for longs (also should be separate types). Make sure float/doubles do not match it.
     BINARYOP("[*|/|+|-]"), // Note: these should probably be separated out to enhance logic
     WHITESPACE("[ \t\f]+"),
     
     LINETERMINATOR("[\\n|\\r|\\r\\n]"),
-        
     
     OPENBRACE("\\{"),
     CLOSEBRACE("\\}"),
@@ -40,12 +39,13 @@ public enum TokenType {
     OPENBRACKET("\\("),
     CLOSEBRACKET("\\)"),
     
+    SEMICOLON(";"),
+    
     SUB("\\032"), // End of file optional character 
     
-    IDENTIFIER("[A-Za-z_$][A-Za-z0-9_$]*"); // Should always be last
+    IDENTIFIER("\\b[A-Za-z_$][A-Za-z0-9_$]*\\b"); // Should always be last
     
-    // @formatter:on
-    
+    // @formatter:on 
     public final String pattern;
     
     private TokenType(final String pattern) {

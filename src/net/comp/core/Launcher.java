@@ -8,7 +8,7 @@ import net.comp.token.Token;
 
 public class Launcher {
     public static void main(final String[] args) {
-        final String input = "while int float void for 55 + 22 - 33";
+        final String input = "while interface int float void for 55 + 22 - 33";
         final WhitespaceStripper stripper = new WhitespaceStripper();
         final Lexer lex = new Lexer();
         

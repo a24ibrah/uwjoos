@@ -18,6 +18,7 @@ public class LexerTest {
     private static final Token WHITESPACE = new Token(TokenType.WHITESPACE, " ");
     private static final Token OPEN_BRACE = new Token(TokenType.OPENBRACE, "{");
     private static final Token CLOSE_BRACE = new Token(TokenType.CLOSEBRACE, "}");
+    private static final Token SEMICOLON = new Token(TokenType.SEMICOLON, ";");
     
     @Test public void testBaseCase() {
         final String input = "class A {}";
@@ -86,6 +87,54 @@ public class LexerTest {
             new Token(TokenType.IDENTIFIER, "B"),
             LexerTest.WHITESPACE,
             LexerTest.OPEN_BRACE,
+            LexerTest.CLOSE_BRACE };
+        
+        Assert.assertArrayEquals("Found: " + Arrays.toString(outputArray) + "\nExpected: " + Arrays.toString(expectedArray), expectedArray, outputArray);
+    }
+    
+    @Test public void testIdentifier() {
+        final String input = "class B{}";
+        final List<Token> output = LexerTest.LEXER.scan(input);
+        final Token[] outputArray = new Token[output.size()];
+        output.toArray(outputArray);
+        final Token[] expectedArray = new Token[] { new Token(TokenType.CLASS, "class"), LexerTest.WHITESPACE, new Token(TokenType.IDENTIFIER, "B"), LexerTest.OPEN_BRACE, LexerTest.CLOSE_BRACE };
+        
+        Assert.assertArrayEquals("Found: " + Arrays.toString(outputArray) + "\nExpected: " + Arrays.toString(expectedArray), expectedArray, outputArray);
+    }
+    
+    @Test public void testIdentifierStartKeyword() {
+        final String input = "class gotot{}";
+        final List<Token> output = LexerTest.LEXER.scan(input);
+        final Token[] outputArray = new Token[output.size()];
+        output.toArray(outputArray);
+        final Token[] expectedArray = new Token[] { new Token(TokenType.CLASS, "class"), LexerTest.WHITESPACE, new Token(TokenType.IDENTIFIER, "gotot"), LexerTest.OPEN_BRACE, LexerTest.CLOSE_BRACE };
+        
+        Assert.assertArrayEquals("Found: " + Arrays.toString(outputArray) + "\nExpected: " + Arrays.toString(expectedArray), expectedArray, outputArray);
+    }
+    
+    @Test public void testIdentifierEndKeyword() {
+        final String input = "class Mint{}";
+        final List<Token> output = LexerTest.LEXER.scan(input);
+        final Token[] outputArray = new Token[output.size()];
+        output.toArray(outputArray);
+        final Token[] expectedArray = new Token[] { new Token(TokenType.CLASS, "class"), LexerTest.WHITESPACE, new Token(TokenType.IDENTIFIER, "Mint"), LexerTest.OPEN_BRACE, LexerTest.CLOSE_BRACE };
+        
+        Assert.assertArrayEquals("Found: " + Arrays.toString(outputArray) + "\nExpected: " + Arrays.toString(expectedArray), expectedArray, outputArray);
+    }
+    
+    @Test public void testKeywordSymbol() {
+        final String input = "class Mint{ break;}";
+        final List<Token> output = LexerTest.LEXER.scan(input);
+        final Token[] outputArray = new Token[output.size()];
+        output.toArray(outputArray);
+        final Token[] expectedArray = new Token[] {
+            new Token(TokenType.CLASS, "class"),
+            LexerTest.WHITESPACE,
+            new Token(TokenType.IDENTIFIER, "Mint"),
+            LexerTest.OPEN_BRACE,
+            LexerTest.WHITESPACE,
+            new Token(TokenType.BREAK, "break"),
+            LexerTest.SEMICOLON,
             LexerTest.CLOSE_BRACE };
         
         Assert.assertArrayEquals("Found: " + Arrays.toString(outputArray) + "\nExpected: " + Arrays.toString(expectedArray), expectedArray, outputArray);
