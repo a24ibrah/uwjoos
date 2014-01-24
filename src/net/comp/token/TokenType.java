@@ -28,7 +28,7 @@ public enum TokenType {
     WHILE("\\bwhile\\b"),
     
     NUMBER("-?[0-9]+"), // Note: this is incorrect, it should be for integers and for longs (also should be separate types). Make sure float/doubles do not match it.
-    BINARYOP("[*|/|+|-]"), // Note: these should probably be separated out to enhance logic
+    //BINARYOP("[*|/|+|-]"), // Note: these should probably be separated out to enhance logic
     WHITESPACE("[ \t\f]+"),
     
     LINETERMINATOR("[\\n|\\r|\\r\\n]"),
