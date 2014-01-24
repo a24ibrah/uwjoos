@@ -43,7 +43,20 @@ public enum TokenType {
     
     SUB("\\032"), // End of file optional character 
     
-        // By Ahmed
+       // By Ahmed
+    
+       // section 3.10.7
+       // null is already defined
+    
+       // section 3.11
+       //LEFTPARANTHES("("),
+       //RIGHTPARANTHES(")"),
+       LEFTBRACE("}"),
+       //RIGHTBRACE("{"),
+       //LEFTBRACKET("["),
+       //RIGHTBRACE("]"),
+       
+       // section 3.12
        DIVIE("/"),MINUS("-"),EQL("="),LEQ("<="),GEQ(">="),GTR(">"),
        LSS("<"),
        PERIOD("."),
@@ -57,14 +70,16 @@ public enum TokenType {
        SIGNEDSHIFTLEFTASSIGN(">>="),UNSIGNEDSHIFTLEFTASSIGN(">>="),
        MODASSIGN("%="),BITXORASSIGN("^="),BITORASSIGN("|="),
         BITANDASSIGN("&="),DIVASSIGN("/="),MINUSASSIGN("-="),
+        QUES("\\?"),
         //STARASSIGN("*=")
-        //PLUS("+"),
-        //MINUS("-"),
-        //STAR("*"),
+        PLUS("\\+"),
+        //MINUS("\\-"),
+        STAR("\\*"),
         //PLUSASSIGN("+=")
         //PLUSPLUS("++"),
         MINUSMINUS("--"),
         //ends here - ahmed
+        
     IDENTIFIER("\\b[A-Za-z_$][A-Za-z0-9_$]*\\b"); // Should always be last
     
     // @formatter:on 
