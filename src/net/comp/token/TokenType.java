@@ -49,12 +49,12 @@ public enum TokenType {
        // null is already defined
     
        // section 3.11
-       //LEFTPARANTHES("("),
-       //RIGHTPARANTHES(")"),
+       LEFTPARANTHES("\\("),
+       RIGHTPARANTHES("\\)"),
        LEFTBRACE("}"),
-       //RIGHTBRACE("{"),
-       //LEFTBRACKET("["),
-       //RIGHTBRACE("]"),
+       RIGHTBRACE("\\{"),
+       LEFTBRACKET("\\["),
+       RIGHTBRACKET("\\]"),
        
        // section 3.12
        DIVIE("/"),MINUS("-"),EQL("="),LEQ("<="),GEQ(">="),GTR(">"),
@@ -72,12 +72,11 @@ public enum TokenType {
         BITANDASSIGN("&="),DIVASSIGN("/="),MINUSASSIGN("-="),
         QUES("\\?"),
         //STARASSIGN("*=")
-        PLUS("\\+"),
-        //MINUS("\\-"),
+        PLUS("\\+"),        
         STAR("\\*"),
-        //PLUSASSIGN("+=")
-        //PLUSPLUS("++"),
-        MINUSMINUS("--"),
+        PLUSASSIGN("\\+\\="),
+        PLUSPLUS("\\+\\+"),
+        MINUSMINUS("\\-\\-"),
         //ends here - ahmed
         
     IDENTIFIER("\\b[A-Za-z_$][A-Za-z0-9_$]*\\b"); // Should always be last
