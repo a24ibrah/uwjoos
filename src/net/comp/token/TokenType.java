@@ -43,6 +43,28 @@ public enum TokenType {
     
     SUB("\\032"), // End of file optional character 
     
+        // By Ahmed
+       DIVIE("/"),MINUS("-"),EQL("="),LEQ("<="),GEQ(">="),GTR(">"),
+       LSS("<"),
+       PERIOD("."),
+       COMMA(","),
+       TILDE("~"),
+       EXCLAMATION("!"),
+       COLON(":"),CARET("^"),BITAND("&"),PERCENT("%"),BITOR("|"),
+       AND ("&&"),EQ("=="),NEG("!="),
+       OR("||"),SHIFTLEFT("<<"),SIGNEDSHIFTRIGHT(">>"),
+       UNSIGNEDSHIFTRIGHT(">>>"),SHIFTLEFTASSIGN("<<="),
+       SIGNEDSHIFTLEFTASSIGN(">>="),UNSIGNEDSHIFTLEFTASSIGN(">>="),
+       MODASSIGN("%="),BITXORASSIGN("^="),BITORASSIGN("|="),
+        BITANDASSIGN("&="),DIVASSIGN("/="),MINUSASSIGN("-="),
+        //STARASSIGN("*=")
+        //PLUS("+"),
+        //MINUS("-"),
+        //STAR("*"),
+        //PLUSASSIGN("+=")
+        //PLUSPLUS("++"),
+        MINUSMINUS("--"),
+        //ends here - ahmed
     IDENTIFIER("\\b[A-Za-z_$][A-Za-z0-9_$]*\\b"); // Should always be last
     
     // @formatter:on 
