@@ -8,76 +8,138 @@ package net.comp.token;
 public enum TokenType {
     // @formatter:off
     COMMENT("(/\\*([^*]|[\\r\\n]|(\\*+([^*/]|[\\r\\n])))*\\*+/)|(//.*[\\n|\\r|\\r\\n])"),
-    //    (/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)|(//.*[\n|\r|\r\n]?)
+    //(/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)|(//.*[\n|\r|\r\n]?)
     
     ABSTRACT("\\babstract\\b"),
-    BYTE("\\bbyte\\b"),BREAK("\\bbreak\\b"),BOOLEAN("\\bboolean\\b"),
-    CONTINUE("\\bcontinue\\b"),CONST("\\bconst\\b"),CLASS("\\bclass\\b"),CHAR("\\bchar\\b"),CATCH("\\bcatch\\b"),CASE("\\bcase\\b"),
-    DOUBLE("\\bdouble\\b"),DEFAULT("\\bdefault\\b"),
-    EXTENDS("\\bextends\\b"),ELSE("\\belse\\b"),
-    FALSE("\\bfalse\\b"),FLOAT("\\bfloat\\b"),FINAL("\\bfinal\\b"),FINALLY("\\bfinally\\b"),FOR("\\bfor\\b"), 
+    BYTE("\\bbyte\\b"),
+    BREAK("\\bbreak\\b"),
+    BOOLEAN("\\bboolean\\b"),
+    CONTINUE("\\bcontinue\\b"),
+    CONST("\\bconst\\b"),
+    CLASS("\\bclass\\b"),
+    CHAR("\\bchar\\b"),
+    CATCH("\\bcatch\\b"),
+    CASE("\\bcase\\b"),
+    DOUBLE("\\bdouble\\b"),
+    DEFAULT("\\bdefault\\b"),
+    EXTENDS("\\bextends\\b"),
+    ELSE("\\belse\\b"),
+    FALSE("\\bfalse\\b"),
+    FLOAT("\\bfloat\\b"),
+    FINAL("\\bfinal\\b"),
+    FINALLY("\\bfinally\\b"),
+    FOR("\\bfor\\b"), 
     GOTO("\\bgoto\\b"),
-    IF("\\bif\\b"),IMPLEMENTS("\\bimplements\\b"),INTERFACE("\\binterface\\b"),INT("\\bint\\b"),
+    IF("\\bif\\b"),
+    IMPLEMENTS("\\bimplements\\b"),
+    INTERFACE("\\binterface\\b"),
+    INT("\\bint\\b"),
     LONG("\\blong\\b"),
-    NATIVE("\\bative\\b"),NULL("\\bnull\\b"),NEW("\\bnew\\b"),
-    PACKAGE("\\bpackage\\b"),PRIVATE("private"),PROTECTED("protected"),PUBLIC("public"),
+    NATIVE("\\bative\\b"),
+    NULL("\\bnull\\b"),
+    NEW("\\bnew\\b"),
+    PACKAGE("\\bpackage\\b"),
+    PRIVATE("private"),
+    PROTECTED("protected"),
+    PUBLIC("public"),
     RETURN("\\breturn\\b"),
-    SHORT("\\bshort\\b"),SYNCHRONIZED("\\bsynchronize\\b"),SWITCH("\\bswitch\\b"),SUPER("\\bsuper\\b"),STATIC("\\bstatic\\b"),STRICTFP("\\bstrictfp\\b"),
-    THIS("\\bthis\\b"),THROW("\\bthrow\\b"),THROWS("\\bthrows\\b"),TRUE("\\btrue\\b"),TRANSIENT("\\btransient\\b"),TRY("\\btry\\b"),
-    VOID("\\bvoid\\b"),VOLATILE("\\bvolatile\\b"),
+    SHORT("\\bshort\\b"),
+    SYNCHRONIZED("\\bsynchronize\\b"),
+    SWITCH("\\bswitch\\b"),
+    SUPER("\\bsuper\\b"),
+    STATIC("\\bstatic\\b"),
+    STRICTFP("\\bstrictfp\\b"),
+    THIS("\\bthis\\b"),
+    THROW("\\bthrow\\b"),
+    THROWS("\\bthrows\\b"),
+    TRUE("\\btrue\\b"),
+    TRANSIENT("\\btransient\\b"),
+    TRY("\\btry\\b"),
+    VOID("\\bvoid\\b"),
+    VOLATILE("\\bvolatile\\b"),
     WHILE("\\bwhile\\b"),
     
-    NUMBER("-?[0-9]+"), // Note: this is incorrect, it should be for integers and for longs (also should be separate types). Make sure float/doubles do not match it.
+    NUMBER("^[-+][0-9]+\\.[0-9]+[eE][-+]?[0-9]+$"), // Note: this is incorrect, 
+    //it should be for integers and for longs (also should be separate types). 
+    //Make sure float/doubles do not match it.
     //BINARYOP("[*|/|+|-]"), // Note: these should probably be separated out to enhance logic
-    WHITESPACE("[ \t\f]+"),
     
+    WHITESPACE("[ \t\f]+"),    
     LINETERMINATOR("[\\n|\\r|\\r\\n]"),
-    
     OPENBRACE("\\{"),
-    CLOSEBRACE("\\}"),
-    
+    CLOSEBRACE("\\}"),    
     OPENBRACKET("\\("),
-    CLOSEBRACKET("\\)"),
-    
-    SEMICOLON(";"),
-    
+    CLOSEBRACKET("\\)"),    
+    SEMICOLON(";"),    
     SUB("\\032"), // End of file optional character 
     
-       // By Ahmed
+    // By Ahmed
+    //Escape Sequence 
+    BS ("\\b"),
+    CR("\\r"),
+    SQ("\\'"),
+    DQ("\\\\"), //?
+    // HEX("\\xd"),
+    DIGIT("\\d+"),  //regex [0-9
+    HT("\\t"),
+    LF("\\n"),
+    FF("\\f"),
+    //Octal Digits
+    OCT("\\b0[0-7]*\\b"),
+    //Hexadicemal Digits
+    HEX("^(6[0-4]|[1-5][0-9a-f]|[1-9a-f])$"), // 1 to 64 (1 to 100):Case insensitive
     
-       // section 3.10.7
-       // null is already defined
+    // section 3.10.7
+    // null is already defined
     
-       // section 3.11
-       LEFTPARANTHES("\\("),
-       RIGHTPARANTHES("\\)"),
-       LEFTBRACE("}"),
-       RIGHTBRACE("\\{"),
-       LEFTBRACKET("\\["),
-       RIGHTBRACKET("\\]"),
-       
-       // section 3.12
-       DIVIE("/"),MINUS("-"),EQL("="),LEQ("<="),GEQ(">="),GTR(">"),
-       LSS("<"),
-       PERIOD("."),
-       COMMA(","),
-       TILDE("~"),
-       EXCLAMATION("!"),
-       COLON(":"),CARET("^"),BITAND("&"),PERCENT("%"),BITOR("|"),
-       AND ("&&"),EQ("=="),NEG("!="),
-       OR("||"),SHIFTLEFT("<<"),SIGNEDSHIFTRIGHT(">>"),
-       UNSIGNEDSHIFTRIGHT(">>>"),SHIFTLEFTASSIGN("<<="),
-       SIGNEDSHIFTLEFTASSIGN(">>="),UNSIGNEDSHIFTLEFTASSIGN(">>="),
-       MODASSIGN("%="),BITXORASSIGN("^="),BITORASSIGN("|="),
-        BITANDASSIGN("&="),DIVASSIGN("/="),MINUSASSIGN("-="),
-        QUES("\\?"),
-        //STARASSIGN("*=")
-        PLUS("\\+"),        
-        STAR("\\*"),
-        PLUSASSIGN("\\+\\="),
-        PLUSPLUS("\\+\\+"),
-        MINUSMINUS("\\-\\-"),
-        //ends here - ahmed
+    // section 3.11
+    //LEFTPARANTHES("\\("),
+    //RIGHTPARANTHES("\\)"),
+    //LEFTBRACE("}"),
+    //RIGHTBRACE("\\{"),
+    LEFTBRACKET("\\["),
+    RIGHTBRACKET("\\]"),       
+    // section 3.12
+    DIVIE("/"),
+    MINUS("-"),
+    EQL("="),
+    LEQ("<="),
+    GEQ(">="),
+    GTR(">"),
+    LSS("<"),
+    PERIOD("."),
+    COMMA(","),
+    TILDE("~"),
+    EXCLAMATION("!"),
+    COLON(":"),
+    CARET("^"),
+    BITAND("&"),
+    PERCENT("%"),
+    BITOR("|"),
+    AND ("&&"),
+    EQ("=="),
+    NEG("!="),
+    OR("||"),
+    SHIFTLEFT("<<"),
+    SIGNEDSHIFTRIGHT(">>"),
+    UNSIGNEDSHIFTRIGHT(">>>"),
+    SHIFTLEFTASSIGN("<<="),
+    SIGNEDSHIFTLEFTASSIGN(">>="),
+    UNSIGNEDSHIFTLEFTASSIGN(">>="),
+    MODASSIGN("%="),
+    BITXORASSIGN("^="),
+    BITORASSIGN("|="),
+    BITANDASSIGN("&="),
+    DIVASSIGN("/="),
+    MINUSASSIGN("-="),
+    QUES("\\?"),
+    //STARASSIGN("*=")
+    PLUS("\\+"),        
+    STAR("\\*"),
+    PLUSASSIGN("\\+\\="),
+    PLUSPLUS("\\+\\+"),
+    MINUSMINUS("\\-\\-"),
+    //ends here - ahmed
         
     IDENTIFIER("\\b[A-Za-z_$][A-Za-z0-9_$]*\\b"); // Should always be last
     
